@@ -12,7 +12,12 @@ module Spree::TransactionRegistrable
       if self.class.eql? Spree::User
         commission_rule_id = Spree::CommissionRule.user_registration.try(:id)
       elsif self.class.eql? Spree::Order
-        commission_rule_id = Spree::CommissionRule.order_placement.try(:id)
+        vendor_id = Spree::Vendor.where(name: "VideoPlasty").first&.id
+        if self.line_items.includes(product: :vendor).where.not('spree_products.vendor_id' => vendor_id).exists?
+          commission_rule_id = Spree::CommissionRule.order_placement_with_vendor.try(:id)
+        else
+          commission_rule_id = Spree::CommissionRule.order_placement.try(:id)
+        end
       end
       affiliate.affiliate_commission_rules.active.where(commission_rule_id: commission_rule_id).present?
     end
