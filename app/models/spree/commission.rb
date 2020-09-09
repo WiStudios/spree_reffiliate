@@ -36,20 +36,20 @@ module Spree
       end
 
       def cannot_mark_unpaid
-        errors.add(:base, Spree.t(:cannot_mark_unpaid, scope: :commission)) if !paid? && paid_changed?
+        errors.add(:base, Spree.t(:cannot_mark_unpaid, scope: :reffiliate)) if !paid? && paid_changed?
       end
 
       def eligiblity_of_dates
         if(start_date && end_date)
-          errors.add(:base, Spree.t(:unsuitable_date_range, scope: :commission)) if (start_date > end_date)
-          errors.add(:base, Spree.t(:dates_ineligible, scope: :commission)) if (start_date < Time.current.beginning_of_month || end_date > Time.current.end_of_month)
+          errors.add(:base, Spree.t(:unsuitable_date_range, scope: :reffiliate)) if (start_date > end_date)
+          errors.add(:base, Spree.t(:dates_ineligible, scope: :reffiliate)) if (start_date < Time.current.beginning_of_month || end_date > Time.current.end_of_month)
         else
-          errors.add(:base, Spree.t(:dates_ineligible, scope: :commission))
+          errors.add(:base, Spree.t(:dates_ineligible, scope: :reffiliate))
         end
       end
 
       def eligible_to_be_paid
-        errors.add(:base, Spree.t(:not_eligible, scope: [:commission, :paid])) if can_marked_paid?
+        errors.add(:base, Spree.t(:not_eligible, scope: [:reffiliate, :paid])) if can_marked_paid?
       end
   end
 end

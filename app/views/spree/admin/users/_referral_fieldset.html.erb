@@ -32,7 +32,7 @@
             <% @user.referral.referred_orders.each do |order| %>
               <li><%= link_to order.number, edit_admin_order_path(order) %> (<%= order.state %>)</li>
             <% end %>
-          <ol>
+          </ol>
         <% end %>
       </td>
     </tr>

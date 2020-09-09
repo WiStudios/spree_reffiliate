@@ -31,7 +31,7 @@ en:
       referral_credit_status: Give referral benefits.
     referral_mail:
       subject: Store credits awarded for successful referral.
-    commission:
+    reffiliate:
       mark_paid_successfully: Commission has been paid successfully
       mark_paid_failure: Commission cannot be marked paid
       cannot_mark_unpaid: Commission cannot be changed from paid to unpaid

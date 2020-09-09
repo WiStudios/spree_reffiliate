@@ -26,7 +26,7 @@ describe Spree::Admin::CommissionsController, type: :controller do
 
     it "expect to redirect to commissions listing" do
       send_request()
-      expect(flash[:success]).to eql(Spree.t(:mark_paid_successfully, scope: :commission))
+      expect(flash[:success]).to eql(Spree.t(:mark_paid_successfully, scope: :reffiliate))
     end
 
     context 'when mark_paid return false(not marked paid)' do
@@ -41,7 +41,7 @@ describe Spree::Admin::CommissionsController, type: :controller do
 
       it "expect to redirect to commissions listing" do
         send_request()
-        expect(flash[:error]).to eql(Spree.t(:mark_paid_failure, scope: :commission))
+        expect(flash[:error]).to eql(Spree.t(:mark_paid_failure, scope: :reffiliate))
       end
     end
   end

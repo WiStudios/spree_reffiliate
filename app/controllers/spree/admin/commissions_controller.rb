@@ -5,9 +5,9 @@ module Spree
 
       def pay
         if @commission.mark_paid!
-          flash[:success] = Spree.t(:mark_paid_successfully, scope: :commission)
+          flash[:success] = Spree.t(:mark_paid_successfully, scope: :reffiliate)
         else
-          flash[:error] = Spree.t(:mark_paid_failure, scope: :commission)
+          flash[:error] = Spree.t(:mark_paid_failure, scope: :reffiliate)
         end
         redirect_to admin_affiliate_commissions_path(@affiliate)
       end
