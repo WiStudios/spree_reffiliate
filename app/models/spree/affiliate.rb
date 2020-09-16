@@ -19,6 +19,10 @@ module Spree
     before_create :create_user, :process_activation
     after_commit :send_activation_instruction, on: :create
 
+    belongs_to :address, class_name: 'Spree::Address'
+
+    scope :active, -> { where(active: true) }
+
     self.whitelisted_ransackable_attributes =  %w[name email]
 
     def self.layout_options
@@ -52,6 +56,14 @@ module Spree
 
     def referred_orders_count
       transactions.where(commissionable_type: 'Spree::Order').count
+    end
+
+    def associated_user
+      @associated_user ||= Spree::User.find_by(email: email)
+    end
+
+    def associated_user?
+      !associated_user.nil?
     end
 
     private

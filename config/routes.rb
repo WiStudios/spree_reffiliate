@@ -3,7 +3,7 @@ Spree::Core::Engine.routes.draw do
   get 'a/:path' => 'reffiliate#affiliate', as: 'affiliate'
   get 'account/referral_details' => 'users#referral_details'
 
-  namespace :admin do
+  namespace :admin, path: Spree.admin_path do
     resources :affiliates do
       resources :commissions do
         patch :pay, on: :member
