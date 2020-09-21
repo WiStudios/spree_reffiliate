@@ -18,7 +18,8 @@ module Spree
               else
                 _rate = rate
               end
-              @amount += ((vendor_line_items.pluck(:price).sum + vendor_line_items.pluck(:promo_total).sum) * (_rate)) / 100
+              # @amount += ((vendor_line_items.pluck(:price).sum + vendor_line_items.pluck(:promo_total).sum) * (_rate)) / 100
+              @amount += (vendor_line_items.pluck(:pre_tax_amount).sum * _rate) / 100
             end
           else
             @amount = (transaction.commissionable.try(:item_total) * (rate)) / 100
