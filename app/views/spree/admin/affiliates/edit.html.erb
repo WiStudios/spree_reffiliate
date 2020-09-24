@@ -30,7 +30,7 @@
     <tbody>
       <tr>
         <th>Affiliate hyperlink</th>
-        <td><%= text_field_tag nil, "#{ENV.fetch('FRONTEND_URL')}/a/#{@affiliate.path}", onclick: 'this.select();', class: 'form-control' %></td>
+        <td><%= text_field_tag nil, @affiliate.path, onclick: 'this.select();', class: 'form-control' %></td>
       </tr>
       <tr>
         <th>Partial Status</th>
