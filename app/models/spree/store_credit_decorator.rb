@@ -3,7 +3,7 @@ Spree::StoreCredit.class_eval do
 
   has_one :referred_record
 
-  after_commit :send_credit_reward_information, on: :create, if: :referral?
+  # after_commit :send_credit_reward_information, on: :create, if: :referral?
 
   private
     def referral?

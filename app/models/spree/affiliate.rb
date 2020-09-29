@@ -17,7 +17,7 @@ module Spree
     validates_associated :affiliate_commission_rules
 
     before_create :create_user, :process_activation
-    after_commit :send_activation_instruction, on: :create
+    # after_commit :send_activation_instruction, on: :create
 
     belongs_to :address, class_name: 'Spree::Address'
 
