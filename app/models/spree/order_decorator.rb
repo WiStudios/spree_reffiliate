@@ -4,7 +4,7 @@ Spree::Order.class_eval do
   has_many :transactions, as: :commissionable, class_name: 'Spree::CommissionTransaction', dependent: :restrict_with_error
   belongs_to :affiliate, class_name: 'Spree::Affiliate'
 
-  state_machine.after_transition to: :complete, do: :create_commission_transaction
+  # state_machine.after_transition to: :complete, do: :create_commission_transaction
 
   private
     def create_commission_transaction
