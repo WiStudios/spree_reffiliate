@@ -7,15 +7,17 @@ module Spree
     validate :cannot_change_commisson, :check_not_locked
 
     before_validation :assign_commission, :evaluate_amount, on: :create
+    after_create :update_affiliate_balance
 
-    self.whitelisted_ransackable_attributes =  %w[amount created_at commission_id]
+    self.whitelisted_ransackable_attributes = %w[amount created_at commission_id]
 
     def display_total
       currency = Spree::Config[:currency]
-      Spree::Money.new(amount, { currency: currency })
+      Spree::Money.new(amount, {currency: currency})
     end
 
     private
+
       def assign_commission
         start_date = (created_at || Date.current).beginning_of_month.beginning_of_day
         end_date = start_date.end_of_month.beginning_of_day
@@ -33,6 +35,10 @@ module Spree
 
       def check_not_locked
         errors.add(:base, Spree.t(:locked_transaction, :commission_transaction)) if locked?
+      end
+
+      def update_affiliate_balance
+        affiliate.increment!(:balance, self.amount)
       end
   end
 end
