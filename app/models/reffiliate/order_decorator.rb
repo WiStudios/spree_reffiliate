@@ -9,7 +9,8 @@ module Reffiliate
                     dependent: :restrict_with_error
       base.belongs_to :affiliate, class_name: 'Spree::Affiliate'
 
-      base.state_machine.after_transition to: :complete, do: :create_commission_transaction
+      # TODO: Manually configure this transition in checkout.rb
+      # base.state_machine.after_transition to: :complete, do: :create_commission_transaction
     end
 
     private
